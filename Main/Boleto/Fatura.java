@@ -1,6 +1,5 @@
 package Main.Boleto;
 
-
 public class Fatura {
 
     private String data;
@@ -13,6 +12,9 @@ public class Fatura {
         this.data = data;
         this.total = total;
         this.nome = nome;
+    }
+
+    public Fatura(String string, String string2, String string3, double d) {
     }
 
     public String getData() {
