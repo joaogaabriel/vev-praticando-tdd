@@ -4,6 +4,7 @@ public class GeradorNotaFiscal {
 
     private NotaFiscalDao notaFiscalDao = new NotaFiscalDao();
     private SAP sap = new SAP();
+    private Smtp smtp = new Smtp();
 
     public NotaFiscal gera(Fatura fatura) {
         double imposto = 0.0;
@@ -34,6 +35,10 @@ public class GeradorNotaFiscal {
 
     public SAP getSAP() {
         return sap;
+    }
+
+    public Smtp getSmtp() {
+        return smtp;
     }
 
 }
