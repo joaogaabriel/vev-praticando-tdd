@@ -48,4 +48,14 @@ public class GeradorNotaFiscalTest {
         assertTrue(gerador.getNotaFiscalDao().contem(nf));
     }
 
+    @Test
+    public void testNotaFiscalEnviadaParaSAP() {
+        Fatura fatura = new Fatura("Cliente E", "Rua V", "TREINAMENTO", 1500.00);
+        GeradorNotaFiscal gerador = new GeradorNotaFiscal();
+
+        NotaFiscal nf = gerador.gera(fatura);
+
+        assertTrue(gerador.getSAP().contem(nf));
+    }
+
 }
