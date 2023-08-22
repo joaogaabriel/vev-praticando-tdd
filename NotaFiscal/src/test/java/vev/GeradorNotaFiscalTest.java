@@ -41,11 +41,11 @@ public class GeradorNotaFiscalTest {
     @Test
     public void testNotaFiscalSalvaNoBanco() {
         Fatura fatura = new Fatura("Cliente D", "Rua W", "CONSULTORIA", 2000.00);
-        GeradorNotaFiscal gerador = new GeradorNotaFiscal(new NotaFiscalDaoMock(), new SAPMock(), new SmtpMock());
+        GeradorNotaFiscal gerador = new GeradorNotaFiscal();
 
         NotaFiscal nf = gerador.gera(fatura);
 
-        assertTrue(((NotaFiscalDaoMock) gerador.getNotaFiscalDao()).isSalvo());
+        assertTrue(gerador.getNotaFiscalDao().contem(nf));
     }
 
 }
