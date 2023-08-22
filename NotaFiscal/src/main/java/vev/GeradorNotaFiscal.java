@@ -1,6 +1,9 @@
 package vev;
 
 public class GeradorNotaFiscal {
+
+    private NotaFiscalDao notaFiscalDao = new NotaFiscalDao();
+
     public NotaFiscal gera(Fatura fatura) {
         double imposto = 0.0;
 
@@ -16,6 +19,14 @@ public class GeradorNotaFiscal {
                 break;
         }
 
-        return new NotaFiscal(fatura.getCliente(), fatura.getValor(), imposto);
+        NotaFiscal nf = new NotaFiscal(fatura.getCliente(), fatura.getValor(), imposto);
+
+        notaFiscalDao.salva(nf);
+
+        return nf;
+    }
+
+    public NotaFiscalDao getNotaFiscalDao() {
+        return notaFiscalDao;
     }
 }
