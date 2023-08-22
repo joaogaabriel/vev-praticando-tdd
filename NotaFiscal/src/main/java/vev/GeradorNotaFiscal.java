@@ -3,6 +3,7 @@ package vev;
 public class GeradorNotaFiscal {
 
     private NotaFiscalDao notaFiscalDao = new NotaFiscalDao();
+    private SAP sap = new SAP();
 
     public NotaFiscal gera(Fatura fatura) {
         double imposto = 0.0;
@@ -22,6 +23,7 @@ public class GeradorNotaFiscal {
         NotaFiscal nf = new NotaFiscal(fatura.getCliente(), fatura.getValor(), imposto);
 
         notaFiscalDao.salva(nf);
+        sap.envia(nf);
 
         return nf;
     }
@@ -29,4 +31,9 @@ public class GeradorNotaFiscal {
     public NotaFiscalDao getNotaFiscalDao() {
         return notaFiscalDao;
     }
+
+    public SAP getSAP() {
+        return sap;
+    }
+
 }
