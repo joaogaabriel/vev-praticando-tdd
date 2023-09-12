@@ -88,4 +88,46 @@ public class GeradorNotaFiscalTest {
         assertEquals(0.00, nf.getValor(), 0.01);
         assertEquals(0.00, nf.getImposto(), 0.01);
     }
+
+    @Test
+    public void testConsultoriaComSucesso() {
+        Fatura fatura = new Fatura("João", "Endereço qualquer", "CONSULTORIA", 100);
+        GeradorNotaFiscal gerador = new GeradorNotaFiscal();
+        NotaFiscal nf = gerador.gera(fatura);
+        assertEquals(100, nf.getValor(), 0.01);
+        assertEquals(25, nf.getImposto(), 0.01);
+    }
+
+    @Test
+    public void testTreinamentoComSucesso() {
+        Fatura fatura = new Fatura("Ana", "Endereço qualquer", "TREINAMENTO", 100);
+        GeradorNotaFiscal gerador = new GeradorNotaFiscal();
+        NotaFiscal nf = gerador.gera(fatura);
+        assertEquals(100, nf.getValor(), 0.01);
+        assertEquals(15, nf.getImposto(), 0.01);
+    }
+
+    @Test
+    public void testOutroComSucesso() {
+        Fatura fatura = new Fatura("Maria", "Endereço qualquer", "OUTRO", 100);
+        GeradorNotaFiscal gerador = new GeradorNotaFiscal();
+        NotaFiscal nf = gerador.gera(fatura);
+        assertEquals(100, nf.getValor(), 0.01);
+        assertEquals(6, nf.getImposto(), 0.01);
+    }
+
+    @Test
+    public void testFalhaTipoInvalido() {
+        Fatura fatura = new Fatura("João", "Endereço qualquer", "INVALIDO", 100);
+        GeradorNotaFiscal gerador = new GeradorNotaFiscal();
+        assertThrows(IllegalArgumentException.class, () -> gerador.gera(fatura));
+    }
+
+    @Test
+    public void testFalhaSemCliente() {
+        Fatura fatura = new Fatura("", "Endereço qualquer", "CONSULTORIA", 100);
+        GeradorNotaFiscal gerador = new GeradorNotaFiscal();
+        assertThrows(IllegalArgumentException.class, () -> gerador.gera(fatura));
+    }
+
 }
