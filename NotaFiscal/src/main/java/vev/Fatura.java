@@ -1,4 +1,4 @@
-package vev;
+package NotaFiscal.src.main.java.vev;
 
 public class Fatura {
     private String cliente;
